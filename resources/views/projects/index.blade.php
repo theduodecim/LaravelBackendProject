@@ -8,20 +8,31 @@
 </head>
 <body>
     <h1>Projects!</h1>
-  
+
 <br>
 <div class="container">
 
-
-
+<table class="table">
+<tr>
+    <td>
+    <label class="subtitle is-3"  for="title">Title</label>
     @foreach($projects as $project)
 
-    <li> {{ $project->title }} </li>
+    <li> {{ $project->title }} <a href="/project/{{ $project->id }}/edit"> edit {{ $project->id }} </a></li>
 
     @endforeach
+    </td>
 
+    <td>
+    <label class="subtitle is-3" for="description">Description</label>
+    @foreach($projects as $project)
 
+    <li> {{ $project->description }} </li>
 
+    @endforeach
+    </td>
+ </tr>
+</table>
 </div>
 <br>
 <br>

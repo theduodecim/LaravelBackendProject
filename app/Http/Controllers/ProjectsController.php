@@ -38,7 +38,7 @@ class ProjectsController extends Controller
     public function edit($id) //now track the $id // this will responce to example.com/projects/1/edit
 
     {
-        $project = Project::find($id); //pass to the project
+        $project = Project::findorfail($id); //pass to the project
         return view('projects.edit', compact('project')); // and show this project id to the view
     }
 
@@ -48,14 +48,21 @@ class ProjectsController extends Controller
 
     }
 
-    public function update(Request $request, Post $post)
+    public function update($id)
     {
-        //
+        $project = Project::findorfail($id);
+        $project->title = request('title');
+        $project->description = request('description');
+        $project->save();
+        return redirect('/project');
     }
 
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $project = Project::findorfail($id);
+        $project->delete();
+
+        return redirect('/project');
     }
 
 }
