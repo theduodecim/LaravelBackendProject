@@ -58,7 +58,7 @@ below there are my project resources
 
 Route::resource('project', 'ProjectsController');
 
-
+Route::patch('/task/{task}', 'ProjectTasksController@update');
 
 
 /*

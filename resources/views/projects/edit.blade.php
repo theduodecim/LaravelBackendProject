@@ -20,10 +20,10 @@
 @method('PATCH')
 
 <div class="field">
-<label class="label" for="title">Ttile</label>
+<label class="label" for="title">Title</label>
 
     <div class="control">
-        <input  name="title" type="text" class="input" value="{{ $project->title }}"  placeholder="Title">
+        <input minlength="6"  name="title" type="text" class="input" value="{{ $project->title }}"  placeholder="Title" required>
     </div>
 
 </div>
@@ -34,7 +34,7 @@
 <label class="label" for="title">Description</label>
 
     <div class="control">
-        <textarea name="description"  class="textarea"> {{ $project->description }} </textarea>
+        <textarea minlength="6" name="description"  class="textarea" required> {{ $project->description }} </textarea>
     </div>
 
 </div>
@@ -62,7 +62,8 @@
 <br>
 <br>
 
-    <a href="/project/create"> Create </a>
-
+    <a class="button is-success is-outlined" href="/project/create"> Create </a> 
+    <br>
+    <a class="subtitle is-2" href="/project"> Projects </a>
 </body>
 </html>

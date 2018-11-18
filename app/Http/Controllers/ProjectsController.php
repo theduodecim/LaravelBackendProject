@@ -24,42 +24,58 @@ class ProjectsController extends Controller
     public function store(request $project)
     {
 
-        $project = new Project();
-        $project->title = request('title');
-        $project->description = request('description');
-        $project->save();
-
+   $validation = request()->validate([
+            'title' => ['required', 'min:6'],
+            'description' => ['required', 'min:6']
+        ]);
+    
+      //  Project::create(['title' => request('title'), 'description' => request('description')]);
+      Project::create($validation);
+     
         return redirect('/project');
 
     }
 
 //route module binding
 
-    public function edit($id) //now track the $id // this will responce to example.com/projects/1/edit
+    public function edit(Project $project) //now track the $id // this will responce to example.com/projects/1/edit
 
     {
-        $project = Project::findorfail($id); //pass to the project
+
         return view('projects.edit', compact('project')); // and show this project id to the view
     }
 
-    public function show() // this will responce to example.com/projects/1/edit
+    public function show(Project $project) // this will responce to example.com/projects/1/edit
 
     {
+        return view('projects.show', compact('project'));
 
     }
+/*
+public function show($id) // this will responce to example.com/projects/1/edit
+{
 
-    public function update($id)
+$project = Project::findorfail($id);
+return view('projects.show', compact('project'));
+
+}
+ */
+
+    public function update(Project $project)
     {
-        $project = Project::findorfail($id);
-        $project->title = request('title');
-        $project->description = request('description');
-        $project->save();
+
+        request()->validate([
+            'title' => ['required', 'min:6'],
+            'description' => ['required', 'min:6']
+        ]);
+
+        $project->update(request(['title','description']));
+    
         return redirect('/project');
     }
 
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        $project = Project::findorfail($id);
         $project->delete();
 
         return redirect('/project');

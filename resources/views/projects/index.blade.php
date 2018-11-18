@@ -18,16 +18,7 @@
     <label class="subtitle is-3"  for="title">Title</label>
     @foreach($projects as $project)
 
-    <li> {{ $project->title }} <a href="/project/{{ $project->id }}/edit"> edit {{ $project->id }} </a></li>
-
-    @endforeach
-    </td>
-
-    <td>
-    <label class="subtitle is-3" for="description">Description</label>
-    @foreach($projects as $project)
-
-    <li> {{ $project->description }} </li>
+    <li><a href="/project/{{ $project->id }}"> {{ $project->title }} </a> <a class="subtitle is-6"  href="/project/{{ $project->id }}/edit"> edit </a></li>
 
     @endforeach
     </td>
@@ -35,9 +26,12 @@
 </table>
 </div>
 <br>
+<a class="button is-success is-outlined" href="/project/create"> Create a new Project</a>
 <br>
 <br>
-    <a href="/project/create"> Create </a>
-    <a href="/edit"> Edit </a>
+<a class="subtitle is-2" href="/"> Home </a>
+
+
+  
 </body>
 </html>
