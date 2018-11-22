@@ -12,7 +12,27 @@
  */
 
 // dedicated controller for sending data to our views 101
+
+// app() & resolve() are the same functions;
+/*
+app()->singleton('App\Example', function() {
+    
+    return new \App\Example;
+});
+*/
+
 Route::get('/', 'Pages@home');
+/*
+Route::get('/', function(){
+    dd(app('example'),app('example'));
+});
+*/
+/*
+Route::get('/', function()
+{
+    dd(app('App\Example'));
+});
+*/
 Route::get('/about', 'Pages@about');
 Route::get('/contact', 'Pages@contact');
 //Route::get('/project', 'Pages@project');
@@ -58,7 +78,13 @@ below there are my project resources
 
 Route::resource('project', 'ProjectsController');
 
-Route::patch('/task/{task}', 'ProjectTasksController@update');
+Route::patch('tasks/{task}', 'ProjectTasksController@update');
+
+Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
+
+
+
+
 
 
 /*

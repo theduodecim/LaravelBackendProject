@@ -16,32 +16,24 @@
 <div class="field">
 <label class="label" for="title">Title</label>
 
-<div class="control">
+    <div class="control">
     <input minlength="6" class="input {{ $errors->has('title') ? 'is-danger' : '' }}" value="{{ old('title') }}" type="text" name="title" placeholder="Project title" required>
+    </div>
 </div>
-</div>
+
 <div class="field">
-<label class="label" for="description">Description</label>
+    <label class="label" for="description">Description</label>
     <div class="control">
          <textarea minlength="6"  class="input" name="description" placeholder="description" required></textarea>
     </div>
 </div>
-<div>
+
+<div id="submitdiv">
         <button class="button is-link" type="submit">Create Project</button>
 </div>
 
 
-@if($errors-> any())
-<div class="notification is-danger">
-
-        <ul>
-            @foreach ( $errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-</div>
+@include('errors')
 
 </form>
 
