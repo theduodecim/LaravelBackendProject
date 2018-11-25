@@ -4,14 +4,24 @@ namespace App\Http\Controllers;
 
 use App\project;
 use Illuminate\Http\Request;
-use Illuminate\Filesystem\Filesystem;
-
 
 class ProjectsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+
+
+
     public function index()
     {
-        $projects = Project::all();
+
+        $projects = Project::where('owner_id', auth()->id())->get(); // select * from projects where owner_id = 4
+        // $projects = Project::all();
         return view('projects.index', compact('projects'));
 
     }
@@ -31,7 +41,8 @@ class ProjectsController extends Controller
             'description' => ['required', 'min:6'],
         ]);
 
-        //  Project::create(['title' => request('title'), 'description' => request('description')]);
+        $validation['owner_id'] = auth()->id();
+        //Project::create(['title' => request('title'), 'description' => request('description')]);
         Project::create($validation);
 
         return redirect('/project');
@@ -55,16 +66,15 @@ return view('projects.show', compact('project'));
 }
  */
 
-
 //FileSystem
-// Filesystemattributes  dd($file*->get()); dd($file*->put()); dd($file*->read()); dd($file*->delete()); 
-//
+    // Filesystemattributes  dd($file*->get()); dd($file*->put()); dd($file*->read()); dd($file*->delete());
+    //
     public function show(Project $project)
     {
 
-     $fileSystem = app('Illuminate\Filesystem\Filesystem');
+        // $fileSystem = app('Illuminate\Filesystem\Filesystem');
 
-      return view('project.show', compact('project'));
+        return view('projects.show', compact('project'));
 
     }
 

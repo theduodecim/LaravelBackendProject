@@ -9,7 +9,7 @@ class Project extends Model
 
     protected $fillable = [ // which fields are mass assingment
 
-        'title', 'description', 'body', 'project_id',
+        'title', 'description', 'body', 'project_id', 'owner_id'
 
     ];
 

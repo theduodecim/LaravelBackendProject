@@ -16,26 +16,33 @@
 // app() & resolve() are the same functions;
 /*
 app()->singleton('App\Example', function() {
-    
-    return new \App\Example;
-});
-*/
 
-Route::get('/', 'Pages@home');
+return new \App\Example;
+});
+ */
+
+//Route::get('/', function(Twitter $twitter){
+//});
+
+/*
+Route::get('/', function (Twitter $twitter) {
+dd($twitter);
+});
+ */
+
 /*
 Route::get('/', function(){
-    dd(app('example'),app('example'));
+dd(app('example'),app('example'));
 });
-*/
+ */
 /*
 Route::get('/', function()
 {
-    dd(app('App\Example'));
+dd(app('App\Example'));
 });
-*/
+ */
 Route::get('/about', 'Pages@about');
 Route::get('/contact', 'Pages@contact');
-//Route::get('/project', 'Pages@project');
 /*
 when you make a
 
@@ -82,11 +89,6 @@ Route::patch('tasks/{task}', 'ProjectTasksController@update');
 
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 
-
-
-
-
-
 /*
 Route::get('/projects', 'ProjectsController@index');
 Route::get('/projects/create', 'ProjectsController@create');
@@ -97,3 +99,7 @@ Route::get('/projects/{project}/edit', 'ProjectsController@edit');
 Route::patch('/projects/{project}', 'ProjectsController@update');
 Route::delete('/projects/{project}', 'ProjectsController@destroy');
  */
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
