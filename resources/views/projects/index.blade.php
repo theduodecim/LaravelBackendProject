@@ -7,6 +7,15 @@
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
 </head>
 <body>
+
+    @can('view' , $projects)
+    <p> You are allow to View this message Admin</p>
+    @endcan
+    
+    @cannot('view', $projects)
+<p> You are allow to View this message</p>
+    @endcannot
+<br>
     <h1>Projects!</h1>
 
 <br>

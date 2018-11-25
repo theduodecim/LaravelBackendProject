@@ -13,10 +13,6 @@ class ProjectsController extends Controller
         $this->middleware('auth');
     }
 
-
-
-
-
     public function index()
     {
 
@@ -54,6 +50,7 @@ class ProjectsController extends Controller
     public function edit(Project $project) //now track the $id // this will responce to example.com/projects/1/edit
 
     {
+        abort_if(\Gate::denies('view', $project), 403);
 
         return view('projects.edit', compact('project')); // and show this project id to the view
     }
@@ -72,6 +69,25 @@ return view('projects.show', compact('project'));
     public function show(Project $project)
     {
 
+        abort_if(\Gate::denies('view', $project), 403);
+
+/*
+if(\Gate::allows('view', $project))
+{
+abort(403);
+}
+ */
+        // abort_if($project->owner_id !== auth()->id(), 403);
+        // abort_unless($project->owner_id !== auth()->id(), 403);
+        //  $this->authorize('view', $project);
+
+        // abort_if(auth()->user()->owns($project), 403);
+        //
+        /*
+        if($project->owner_id !== auth()->id()){
+        abort(403);
+        }
+         */
         // $fileSystem = app('Illuminate\Filesystem\Filesystem');
 
         return view('projects.show', compact('project'));
@@ -98,6 +114,8 @@ return view('projects.show', compact('project'));
 
         $project->update(request(['title', 'description']));
 
+        abort_if(\Gate::denies('view', $project), 403);
+
         return redirect('/project');
     }
 
@@ -105,6 +123,7 @@ return view('projects.show', compact('project'));
     {
         $project->delete();
 
+        abort_if(\Gate::denies('view', $project), 403);
         return redirect('/project');
     }
 
