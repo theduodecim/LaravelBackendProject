@@ -63,9 +63,15 @@
                             </div>
                         </div>
                     </form>
+<br>
+                    <div class="box">
+                        <img  src="img\fullcoursecomplete.jpg">
+                        <a class="subtitle is-5" href="https://laracasts.com/series/laravel-from-scratch-2018">From Laracasts Instructor</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+ <a href="https://github.com/laravel/telescope"> <img  src="img/laravel telescope.svg"> </a> 
 </div>
 @endsection

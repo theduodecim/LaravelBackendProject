@@ -1,17 +1,23 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Projects</title>
-    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
-</head>
-<body>
+@extends('layouts.app')
+  
+
+
+        @section('content')
 
 <div class="container">
+        <section class="hero is-primary">
+                <div class="hero-body">
+                  <div class="container">
+                    <h1 class="title">
+                            Edit Projects
+                    </h1>
+                    <h2 class="subtitle">
+                     
+                    </h2>
+                  </div>
+                </div>
+              </section>
 
-
-<h1 class="title">Edit Projects</h1>
 
 
 <form method="POST" action="/project/{{ $project->id }}">
@@ -46,6 +52,7 @@
     </div>
 
 </div>
+@include('errors')
 </form>
 
 <div class="field">
@@ -57,6 +64,10 @@
     </div>
     </form>
 </div>
+
+
+
+
 </div>
 <br>
 <br>
@@ -65,5 +76,7 @@
     <a class="button is-success is-outlined" href="/project/create"> Create </a> 
     <br>
     <a class="subtitle is-2" href="/project"> Projects </a>
-</body>
-</html>
+
+
+
+@endsection    

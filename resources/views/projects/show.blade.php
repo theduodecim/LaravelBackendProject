@@ -1,22 +1,9 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Projects</title>
-    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
-</head>
-<body>
-
-<style>
-
-.is-completed {
-    text-decoration: line-through;
-}
+@extends('layouts.app')
+  
 
 
+        @section('content')
 
-</style>
 
 
 
@@ -74,26 +61,26 @@
 
     <div class="control">
       <button type="submit" class="button is-link">Add Task</button>
+     
     </div>
-
+  
 </div>
 @include('errors')
 </form>
 
 
 
+
 <p>
 
-    <a href="/project/{{ $project->id }}/edit"> Edit </a>
+    <a class="button is-light" href="/project"> Back </a> <a class="button is-success" href="/project/{{ $project->id }}/edit"> Edit </a>
     <br>
     <br>
-    <a href="/project"> Back </a>
+   
 
 </p>
 
 
 
 
-
-</body>
-</html>
+@endsection

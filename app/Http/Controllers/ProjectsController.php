@@ -16,9 +16,18 @@ class ProjectsController extends Controller
     public function index()
     {
 
-        $projects = Project::where('owner_id', auth()->id())->get(); // select * from projects where owner_id = 4
+        //  $projects = Project::where('owner_id', auth()->id())->take(1)->get(); // select * from projects where owner_id = 4
         // $projects = Project::all();
-        return view('projects.index', compact('projects'));
+
+        //  $projects = Project::where('owner_id', auth()->id())->get();
+
+        //dont Forget readability another approach to say " i want the user project "
+        //  $projects = auth()->user()->projects;
+        //   return view('projects.index', compact('projects'));
+
+        return view('projects.index', [
+            'projects' => auth()->user()->projects,
+        ]);
 
     }
 
@@ -29,18 +38,19 @@ class ProjectsController extends Controller
 
     }
 
-    public function store(request $project)
+    public function store()
     {
-
-        $validation = request()->validate([
-            'title' => ['required', 'min:4'],
-            'description' => ['required', 'min:6'],
-        ]);
-
+        $validation = $this->validateProject();
         $validation['owner_id'] = auth()->id();
         //Project::create(['title' => request('title'), 'description' => request('description')]);
-        Project::create($validation);
+        $project = Project::create($validation);
 
+// In the real scenario
+        /*
+        \Mail::to($project->owner->email)->send(
+        new ProjectCreated($project)
+        );
+         */
         return redirect('/project');
 
     }
@@ -107,12 +117,7 @@ return view('projects.show', compact('project'));
     public function update(Project $project)
     {
 
-        request()->validate([
-            'title' => ['required', 'min:6'],
-            'description' => ['required', 'min:6'],
-        ]);
-
-        $project->update(request(['title', 'description']));
+        $project->update($this->validateProject());
 
         abort_if(\Gate::denies('view', $project), 403);
 
@@ -125,6 +130,16 @@ return view('projects.show', compact('project'));
 
         abort_if(\Gate::denies('view', $project), 403);
         return redirect('/project');
+    }
+
+    public function validateProject()
+    {
+
+        return request()->validate([
+            'title' => ['required', 'min:6'],
+            'description' => ['required', 'min:6'],
+        ]);
+
     }
 
 }

@@ -1,7 +1,8 @@
 <?php
 
 namespace App;
-
+use Illuminate\Mail\Mailable;
+use App\Mail\projectCreated;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
@@ -13,6 +14,25 @@ class Project extends Model
 
     ];
 
+/*
+    protected static function boot()
+    {
+        // because this overriting a method that is in the model class
+        //make sure that you are calling the parent::method() 
+        parent::boot();
+
+        static::created(function ($project)
+        {
+            //this code is executed only after a new project is created
+            \Mail::to($project->owner->email)->send(
+                new ProjectCreated($project)
+            );
+
+
+        });
+    
+    }
+*/
 // building a new relationship with projects and tasks
 
     public function tasks()
@@ -48,5 +68,14 @@ return  Task::create([
   //compact already define that the request goes for the given column will fail if this have different names
  // return $this->tasks()->create(compact('name of the sending request with validation somehow fails')); 
     }
+
+public function owner()
+{
+
+  return $this->belongsTo(User::class);
+
+
+}
+
 
 }

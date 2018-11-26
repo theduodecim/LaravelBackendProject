@@ -33,4 +33,19 @@ class User extends Authenticatable
         return $this->belongsTo(Project::class);
     }
 */
+
+public function projects() 
+
+{
+    //What reletionship has project with user?
+    //HasOne?
+    //HasMany?
+
+    return $this->hasMany(Project::class, 'owner_id'); // fetching this query in sql is SELECT * FROM projects WHERE 'owner_id' = current instance of this user
+
+
+}
+
+
+
 }

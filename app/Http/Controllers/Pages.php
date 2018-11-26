@@ -16,10 +16,10 @@ class Pages extends Controller
             'go to concert',
         ];
     
-        // i want to return and view the home view and i want to give this a var
+      
         return view('home', [
             'tasks' => $tasks,
-            'foo' => 'foobar', // this will equal to foobar
+            'foo' => 'foobar', 
         ]);
 
     }
