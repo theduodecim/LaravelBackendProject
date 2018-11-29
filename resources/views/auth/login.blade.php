@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+      
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -24,7 +25,7 @@
                                 @endif
                             </div>
                         </div>
-
+                      
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -50,7 +51,7 @@
                                 </div>
                             </div>
                         </div>
-
+                      
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -63,6 +64,7 @@
                             </div>
                         </div>
                     </form>
+                    
 <br>
                     <div class="box">
                         <img  src="img\fullcoursecomplete.jpg">
@@ -72,6 +74,12 @@
             </div>
         </div>
     </div>
- <a href="https://github.com/laravel/telescope"> <img  src="img/laravel telescope.svg"> </a> 
+    <br>
+    <div class="box-background-color-Light" align="center">
+            <a href="https://github.com/laravel/telescope"> <img  src="img/laravel telescope.svg"> </a> 
+            <a href="https://forge.laravel.com/servers"> <img height="150" width="150"  src="img/forge.png"> </a> 
+            <a href="https://forge.laravel.com/servers"> <img height="150" width="150"  src="img/digitalOcean.png"> </a> 
+    </div>
+ 
 </div>
 @endsection
