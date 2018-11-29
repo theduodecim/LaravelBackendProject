@@ -60,7 +60,7 @@ class ProjectsController extends Controller
     public function edit(Project $project) //now track the $id // this will responce to example.com/projects/1/edit
 
     {
-        abort_if(\Gate::allows('view', $project), 403);
+        abort_if($project->owner_id !== auth()->id(), 403);
 
         return view('projects.edit', compact('project')); // and show this project id to the view
     }
@@ -79,7 +79,7 @@ return view('projects.show', compact('project'));
     public function show(Project $project)
     {
 
-        abort_if(\Gate::allows('view', $project), 403);
+        abort_if($project->owner_id !== auth()->id(), 403);
 
 /*
 if(\Gate::allows('view', $project))
@@ -119,8 +119,7 @@ return view('projects.show', compact('project'));
 
         $project->update($this->validateProject());
 
-        abort_if(\Gate::allows('view', $project), 403);
-
+        abort_if($project->owner_id !== auth()->id(), 403);
         return redirect('/project');
     }
 
@@ -128,7 +127,7 @@ return view('projects.show', compact('project'));
     {
         $project->delete();
 
-        abort_if(\Gate::allows('view', $project), 403);
+        abort_if($project->owner_id !== auth()->id(), 403);
         return redirect('/project');
     }
 
