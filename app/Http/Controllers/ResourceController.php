@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\project;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
