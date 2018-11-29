@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\project;
+use App\Models\Post;
+use App\Models\project;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
