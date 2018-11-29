@@ -52,7 +52,7 @@ return [
     |
      */
 
-    'url' => env('APP_URL', 'http://laravelbackendproject.tk'),
+    'url' => env('APP_URL', ''),
 
     /*
     |--------------------------------------------------------------------------
